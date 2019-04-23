@@ -28,9 +28,8 @@ class Window(QWidget):
         self.ylabel3 = QLabel("YD", self)
         self.yEdit3 = QLineEdit()
         
-        #stworzenie przycisków do wyboru koloru oraz wczytywania danych z oddzielnego pliku
+        #stworzenie przycisków do wyboru koloru 
         self.clrChoose=QPushButton('Wybierz kolor wykresu', self)
-        self.loadData=QPushButton('Wczytaj dane', self)
         
         #stworzenie okienek i podpisów dla współrzędnych punktu P
         self.info = QLabel ("Informacje o Punkcie P", self)
@@ -88,12 +87,10 @@ class Window(QWidget):
         layout.addWidget(self.button, 10, 1, 1, -1) 
         layout.addWidget(self.canvas, 9, 1, 1, -1)
         layout.addWidget(self.clrChoose, 11, 1, 1, -1)
-        layout.addWidget(self.loadData, 12, 1, 1, -1)
         
         # połączenie przycisku (signal) z akcją (slot)
         self.button.clicked.connect(self.handleButton)
         self.clrChoose.clicked.connect(self.clrChooseF)
-        self.loadData.clicked.connect(self.loadDatA)
         self.button1.clicked.connect(self.usun)
         self.button2.clicked.connect(self.zapisz)
         
@@ -204,13 +201,7 @@ class Window(QWidget):
         color=QColorDialog.getColor()
         if color.isValid():
             self.rysuj(color.name())
-            
-    #zdefiniowanie funkcji która wczytuje dane z oddzielmego pliku        
-    def loadDatA(dane):
-        plik=open(dane,'r')
-        wiersze=plik.readlines()
-        plik.close()
-        
+                    
     # zdefiniowanie funkcji która usuwa dane z okienek i wykresu   
     def usun(self):
         self.xEdit.clear()
